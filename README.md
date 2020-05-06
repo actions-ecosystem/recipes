@@ -4,7 +4,7 @@
 
 This repository contains some use cases of workflows with [actions-ecosystem](https://github.com/actions-ecosystem) GitHub Actions.
 
-If you're not so familiar with GitHub Actions, you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
+If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
 ## Automation of updating a Git tag with semver and creating a GitHub release
 
