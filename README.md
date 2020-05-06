@@ -2,7 +2,7 @@
 
 [![license][license-badge]][license]
 
-This repository contains some use cases of workflows with [actions-ecosystem](https://github.com/actions-ecosystem) GitHub Actions.
+This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem) GitHub Actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
