@@ -168,14 +168,14 @@ jobs:
 
 </details>
 
-## Add suitable labels to a pull request based on the information
+## Add suitable labels to a issue based on the information
 
-This workflow adds a `help wanted` label to a pull request whose title matches the regex `help|work`.
+This workflow adds a `help wanted` label to an issue whose title matches the regex `help|work`.
 
 <details>
 <summary>Screenshots</summary>
 
-![screenshot](./docs/assets/screenshot-add-label-based-on-pull-request.png)
+![screenshot](./docs/assets/screenshot-add-label-based-on-issue.png)
 
 </details>
 
@@ -183,7 +183,7 @@ This workflow adds a `help wanted` label to a pull request whose title matches t
 <summary>Configuration</summary>
 
 ```yaml
-name: Mark Pull Request with Help Wanted
+name: Mark Issue with Help Wanted
 
 on:
   pull_request:
@@ -201,7 +201,7 @@ jobs:
       - uses: actions-ecosystem/action-regex-match@v2
         id: regex-match
         with:
-          text: ${{ github.event.pull_request.title }}
+          text: ${{ github.event.issue.title }}
           regex: "help|work"
           flags: 'gi'
 
