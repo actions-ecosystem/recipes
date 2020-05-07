@@ -5,11 +5,11 @@
 This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem)'s GitHub Actions.
 
 Most of Action Ecosystem's actions are designed like microservices architecture, it means they're on single purpose, high cohesion, loosely coupled.
-That's why it's further
+That's why it's further better to use an action with other actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
-If you're interested in the latest one, explore `.github/workflows` in [actions-ecosystem](https://github.com/actions-ecosystem) repositories.
+If you're interested in the latest one, explore `.github/workflows` in Actions Ecosystem's repositories.
 
 ## Automate updating a Git tag with semver and creating a GitHub release
 
