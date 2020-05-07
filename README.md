@@ -170,7 +170,7 @@ jobs:
 
 ## Add suitable labels to a pull request based on the information
 
-This workflow adds a `help wanted` label to a pull request whose title contains `help` or `not work`.
+This workflow adds a `help wanted` label to a pull request whose title matches the regex `help|work`.
 
 <details>
 <summary>Screenshots</summary>
