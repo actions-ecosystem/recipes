@@ -2,18 +2,24 @@
 
 [![license][license-badge]][license]
 
-This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem) GitHub Actions.
+This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem)'s GitHub Actions.
+
+Most of Action Ecosystem's actions are designed like microservices architecture, it means they're on single purpose, high cohesion, loosely coupled.
+That's why it's further
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
-## Automate updating a Git tag with semver and creating a GitHub release
+If you're interested in the latest one, explore `.github/workflows` in [actions-ecosystem](https://github.com/actions-ecosystem) repositories.
 
-If you're interested in the latest one, see .github/workflows/release.yml in [actions-ecosystem](https://github.com/actions-ecosystem) repositories.
+## Automate updating a Git tag with semver and creating a GitHub release
 
 ![screenshot](./docs/assets/screenshot-release-pull-request.png)
 ![screenshot](./docs/assets/screenshot-release-release.png)
 
 With this workflow, you can automatically update a Git tag and create a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
+
+<details>
+<summary>Configuration</summary>
 
 1. [actions-ecosystem/action-get-merged-pull-request](https://github.com/actions-ecosystem/action-get-merged-pull-request) gets a pull request merged with the base branch.
 2. [actions-ecosystem/action-release-label](https://github.com/actions-ecosystem/action-release-label) gets a semver update level from a *release label*.
@@ -96,12 +102,18 @@ jobs:
             The new version [${{ steps.bump-semver.outputs.new_version }}](https://github.com/${{ github.repository }}/releases/tag/${{ steps.bump-semver.outputs.new_version }}) has been released :tada:
 ```
 
-### Check release status
+</details>
 
-In addition, the following workflow works well with the release workflow above.
+## Check release status
+
+The following workflow requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.
+
 This workflow tells you what version will be released with the pull request.
 
 ![screenshot](./docs/assets/screenshot-check-release-comment.png)
+
+<details>
+<summary>Configuration</summary>
 
 ```yaml
 name: Check Release
@@ -142,8 +154,50 @@ jobs:
             This PR will update [${{ github.repository }}](https://github.com/${{ github.repository }}) from [${{ steps.get-latest-tag.outputs.tag }}](https://github.com/${{ github.repository }}/releases/tag/${{ steps.get-latest-tag.outputs.tag }}) to ${{ steps.bump-semver.outputs.new_version }} :rocket:
 
             If this update isn't as you expected, you may want to change or remove the *release label*.
-
 ```
+
+</details>
+
+## Add suitable labels to a pull request based on the information
+
+This workflow adds a `help wanted` label to a pull request whose title contains `help` or `not work`.
+
+![screenshot](./docs/assets/screenshot-add-label-based-on-pull-request.png)
+
+<details>
+<summary>Configuration</summary>
+
+```yaml
+name: Mark Pull Request with Help Wanted
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.event.pull_request.title }}
+          regex: "help|work"
+          flags: 'gi'
+
+      - uses: actions-ecosystem/action-add-labels@v1
+        if: ${{ steps.regex-match.outputs.match != '' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: 'help wanted'
+```
+
+</details>
 
 ## License
 
