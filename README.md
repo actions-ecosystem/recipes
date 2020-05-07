@@ -13,10 +13,15 @@ If you're interested in the latest one, explore `.github/workflows` in Actions E
 
 ## Automate updating a Git tag with semver and creating a GitHub release
 
+With this workflow, you can automatically update a Git tag and create a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
+
+<details>
+<summary>Screenshots</summary>
+
 ![screenshot](./docs/assets/screenshot-release-pull-request.png)
 ![screenshot](./docs/assets/screenshot-release-release.png)
 
-With this workflow, you can automatically update a Git tag and create a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
+</details>
 
 <details>
 <summary>Configuration</summary>
@@ -110,7 +115,12 @@ The following workflow requires the [release workflow](#automate-updating-a-git-
 
 This workflow tells you what version will be released with the pull request.
 
+<details>
+<summary>Screenshots</summary>
+
 ![screenshot](./docs/assets/screenshot-check-release-comment.png)
+
+</details>
 
 <details>
 <summary>Configuration</summary>
@@ -162,7 +172,12 @@ jobs:
 
 This workflow adds a `help wanted` label to a pull request whose title contains `help` or `not work`.
 
+<details>
+<summary>Screenshots</summary>
+
 ![screenshot](./docs/assets/screenshot-add-label-based-on-pull-request.png)
+
+</details>
 
 <details>
 <summary>Configuration</summary>
