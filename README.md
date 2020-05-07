@@ -4,7 +4,7 @@
 
 This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem)'s GitHub Actions.
 
-Most of Action Ecosystem's actions are designed like microservices architecture, it means they're on single purpose, high cohesion, loosely coupled.
+Most of Actions Ecosystem's actions are designed like microservices architecture, it means they're on single purpose, high cohesion, loosely coupled.
 That's why it's further better to use an action with other actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
@@ -170,7 +170,7 @@ jobs:
 
 ## Add suitable labels to a issue based on the information
 
-This workflow adds a `help wanted` label to an issue whose title matches the regex `help|work`.
+This workflow adds a `help wanted` label to an issue whose title matches the regex `help|not work`.
 
 <details>
 <summary>Screenshots</summary>
@@ -202,7 +202,7 @@ jobs:
         id: regex-match
         with:
           text: ${{ github.event.issue.title }}
-          regex: "help|work"
+          regex: "help|not work"
           flags: 'gi'
 
       - uses: actions-ecosystem/action-add-labels@v1
