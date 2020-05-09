@@ -4,8 +4,13 @@
 
 This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem)'s GitHub Actions.
 
-Most of Actions Ecosystem's actions are designed like microservices architecture, it means they're on single purpose, high cohesion, loosely coupled.
+Actions Ecosystem's GitHub Actions are designed to do one thing well as Unix Philosophy.
 That's why it's further better to use an action with other actions.
+
+Let's say we want a workflow that lints source code and send a result to Slack channel.
+In this case, we prefer to use a *lint action* and a *Slack action*, rather than a *lint and Slack action*.
+This is because if we use a *lint and Slack action* and want a workflow that *tests* source code and send a result to Slack channel then we need to develop the same Slack notification logic again.
+GitHub Actions' output parameters works as pipelines between actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
