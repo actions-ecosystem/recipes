@@ -13,7 +13,7 @@ If you're interested in the latest ones, explore `.github/workflows` in Actions 
 
 ## Automate updating a Git tag with semver and creating a GitHub release
 
-With this workflow, you can automatically update a Git tag and create a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
+This workflow automates updating a Git tag and creating a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
 
 <details>
 <summary>Screenshots</summary>
@@ -111,9 +111,9 @@ jobs:
 
 ## Check release status
 
-The following workflow requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.
-
 This workflow tells you what version will be released with the pull request.
+
+*It requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.*
 
 <details>
 <summary>Screenshots</summary>
@@ -216,7 +216,7 @@ jobs:
 
 ## Lint the title of a pull request
 
-The workflow lints the title of a pull request.
+This workflow lints the title of a pull request.
 
 <details>
 <summary>Screenshots</summary>
@@ -229,7 +229,7 @@ The workflow lints the title of a pull request.
 <summary>Configuration</summary>
 
 ```yaml
-name: Lint PR Title
+name: Lint Pull Request Title
 
 on:
   pull_request:
