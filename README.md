@@ -9,11 +9,11 @@ That's why it's further better to use an action with other actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
-If you're interested in the latest one, explore `.github/workflows` in Actions Ecosystem's repositories.
+If you're interested in the latest ones, explore `.github/workflows` in Actions Ecosystem's repositories.
 
 ## Automate updating a Git tag with semver and creating a GitHub release
 
-With this workflow, you can automatically update a Git tag and create a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
+This workflow automates updating a Git tag and creating a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
 
 <details>
 <summary>Screenshots</summary>
@@ -111,9 +111,9 @@ jobs:
 
 ## Check release status
 
-The following workflow requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.
-
 This workflow tells you what version will be released with the pull request.
+
+*It requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.*
 
 <details>
 <summary>Screenshots</summary>
@@ -210,6 +210,67 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'help wanted'
+```
+
+</details>
+
+## Lint the title of a pull request
+
+This workflow lints the title of a pull request.
+
+<details>
+<summary>Screenshots</summary>
+
+![screenshot](./docs/assets/screenshot-lint-pull-request-title.png)
+
+</details>
+
+<details>
+<summary>Configuration</summary>
+
+```yaml
+name: Lint Pull Request Title
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.event.pull_request.title }}
+          regex: '(?:add|update|fix)\([a-z]+\):\s.+'
+
+      - uses: actions-ecosystem/action-create-comment@v1
+        if: ${{ steps.regex-match.outputs.match == '' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            :warning: The title of this PR is invalid.
+
+            Please make the title match the regex `(?:add|update|fix)\([a-z]+\):\s.+`.
+
+            e.g.) `add(cli): enable --verbose flag`, `fix(api): avoid unexpected error in handler`
+
+      - uses: actions-ecosystem/action-add-labels@v1
+        if: ${{ steps.regex-match.outputs.match == '' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: 'invalid/title'
+
+      - uses: actions-ecosystem/action-set-action-status@v1
+        if: ${{ steps.regex-match.outputs.match == '' }}
+        with:
+          status: failure
 ```
 
 </details>
