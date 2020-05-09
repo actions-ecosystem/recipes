@@ -8,8 +8,8 @@ Actions Ecosystem's actions are designed to do one thing well as Unix Philosophy
 That's why it's further better to use an action with other actions.
 
 Let's say we want a workflow that lints source code and send the result to Slack channel.
-In this case, we prefer to use a *lint action* and a *Slack action*, rather than a *lint and Slack action*.
-This is because if we use a *lint and Slack action* and want a workflow that *tests* source code and send the result to Slack channel then we need to develop the same Slack notification logic again.
+In this case, we prefer to use a `lint action` and a `Slack action`, rather than a `lint and Slack action`.
+This is because if we use a `lint and Slack action` and want a workflow that *tests* source code and send the result to Slack channel then we need to develop the same Slack notification logic again.
 We prefer to use GitHub Actions' output parameters that work as pipelines between actions.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
