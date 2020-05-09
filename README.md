@@ -236,6 +236,7 @@ on:
     types:
       - opened
       - edited
+      - reopened
 
 jobs:
   lint:
