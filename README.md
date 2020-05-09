@@ -4,7 +4,7 @@
 
 This repository contains some use cases of workflows with [Actions Ecosystem](https://github.com/actions-ecosystem)'s GitHub Actions.
 
-Actions Ecosystem's GitHub Actions are designed to do one thing well as Unix Philosophy.
+Actions Ecosystem's actions are designed to do one thing well as Unix Philosophy.
 That's why it's further better to use an action with other actions.
 
 Let's say we want a workflow that lints source code and send a result to Slack channel.
