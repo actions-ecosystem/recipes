@@ -20,13 +20,8 @@ If you're interested in the latest ones, explore `.github/workflows` in Actions 
 
 This workflow automates updating a Git tag and creating a GitHub release with only adding a *release label* and optionally a *release note* after a pull request has been merged.
 
-<details>
-<summary>Screenshots</summary>
-
 ![screenshot](./docs/assets/screenshot-release-pull-request.png)
 ![screenshot](./docs/assets/screenshot-release-release.png)
-
-</details>
 
 <details>
 <summary>Configuration</summary>
@@ -120,12 +115,7 @@ This workflow tells you what version will be released with the pull request.
 
 *It requires the [release workflow](#automate-updating-a-git-tag-with-semver-and-creating-a-github-release) above.*
 
-<details>
-<summary>Screenshots</summary>
-
 ![screenshot](./docs/assets/screenshot-check-release-comment.png)
-
-</details>
 
 <details>
 <summary>Configuration</summary>
@@ -177,12 +167,7 @@ jobs:
 
 This workflow adds a `help wanted` label to an issue whose title matches the regex `help|not work`.
 
-<details>
-<summary>Screenshots</summary>
-
 ![screenshot](./docs/assets/screenshot-add-label-based-on-issue.png)
-
-</details>
 
 <details>
 <summary>Configuration</summary>
@@ -219,16 +204,49 @@ jobs:
 
 </details>
 
+### Propagate mentions from GitHub to Slack
+
+![screenshot](./docs/assets/screenshot-propagate-mention-github.png)
+![screenshot](./docs/assets/screenshot-propagate-mention-slack.png)
+
+<details>
+<summary>Configuration</summary>
+
+```yaml
+name: Propagate Mentions
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          regex: '^\/cc(( +@[-\w]+)+)\s*$'
+          text: ${{ github.event.comment.body }}
+          flags: 'gm'
+
+      - uses: actions-ecosystem/action-slack-notifier@v1
+        if: ${{ steps.regex-match.outputs.match != '' }}
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          message: |
+            ${{ steps.regex-match.outputs.match }}
+          channel: develop
+          color: blue # optional
+          verbose: true # optional
+```
+
 ## Lint the title of a pull request
 
 This workflow lints the title of a pull request.
 
-<details>
-<summary>Screenshots</summary>
-
 ![screenshot](./docs/assets/screenshot-lint-pull-request-title.png)
-
-</details>
 
 <details>
 <summary>Configuration</summary>
