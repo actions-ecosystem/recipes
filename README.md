@@ -292,10 +292,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'invalid/title'
 
-      - uses: actions-ecosystem/action-set-action-status@v1
+      - run: exit 1
         if: ${{ steps.regex-match.outputs.match == '' }}
-        with:
-          status: failure
 ```
 
 </details>
