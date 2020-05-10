@@ -204,7 +204,7 @@ jobs:
 
 </details>
 
-### Propagate mentions from GitHub to Slack
+## Propagate mentions from GitHub to Slack
 
 ![screenshot](./docs/assets/screenshot-propagate-mention-github.png)
 ![screenshot](./docs/assets/screenshot-propagate-mention-slack.png)
@@ -241,6 +241,8 @@ jobs:
           color: blue # optional
           verbose: true # optional
 ```
+
+</details>
 
 ## Lint the title of a pull request
 
