@@ -300,6 +300,34 @@ jobs:
 
 </details>
 
+## Automatically assign the user who creates an issue or a pull request
+
+![screenshot](./docs/assets/screenshot-assign-automatically.png)
+
+<details>
+<summary>Configuration</summary>
+
+```yaml
+name: Auto Assign
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  add_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-add-assignees@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          assignees: ${{ github.actor }}
+```
+
+</details>
+
 ## License
 
 Copyright 2020 The Actions Ecosystem Authors.
