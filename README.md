@@ -206,14 +206,14 @@ jobs:
 
 ### Propagate mentions from GitHub to Slack
 
-![screenshot](./docs/assets/screenshot-propagate-comment-github.png)
-![screenshot](./docs/assets/screenshot-propagate-comment-slack.png)
+![screenshot](./docs/assets/screenshot-propagate-mention-github.png)
+![screenshot](./docs/assets/screenshot-propagate-mention-slack.png)
 
 <details>
 <summary>Configuration</summary>
 
 ```yaml
-name: Propagate Comment
+name: Propagate Mentions
 
 on:
   issue_comment:
