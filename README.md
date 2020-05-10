@@ -176,7 +176,7 @@ This workflow adds a `help wanted` label to an issue whose title matches the reg
 name: Mark Issue with Help Wanted
 
 on:
-  pull_request:
+  issues:
     types:
       - opened
       - edited
