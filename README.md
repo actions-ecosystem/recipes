@@ -11,6 +11,7 @@ Let's say we want a workflow that lints source code and send the result to Slack
 In this case, we prefer to use a `lint action` and a `Slack action`, rather than a `lint and Slack action`.
 This is because if we use a `lint and Slack action` and want a workflow that *tests* source code and send the result to Slack channel then we need to develop the same Slack notification logic again.
 We prefer to use GitHub Actions' output parameters that work as pipelines between actions.
+And also, even if you prefer to use an action not in Actions Ecosystem in your workflow, some of Actions Ecosystem's actions help you as a part of your workflow.
 
 If you're not so familiar with GitHub Actions, first of all you may want to read [GitHub Actions Documentation](https://help.github.com/en/actions).
 
