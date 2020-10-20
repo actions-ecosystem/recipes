@@ -61,7 +61,6 @@ jobs:
         id: release-label
         if: ${{ steps.get-merged-pull-request.outputs.title != null }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: ${{ steps.get-merged-pull-request.outputs.labels }}
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
